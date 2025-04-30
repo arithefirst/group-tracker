@@ -1,15 +1,14 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { authClient } from '@/lib/auth-client';
-import { FormEvent, useEffect, useState } from 'react';
-import { Loader } from 'lucide-react';
+import { cn, getZodMsg } from '@/lib/utils';
 import { ErrorContext } from 'better-auth/client';
+import { Loader } from 'lucide-react';
+import { FormEvent, useEffect, useState } from 'react';
 import z, { ZodError } from 'zod';
-import { getZodMsg } from '@/lib/utils';
 
 type AuthError = ErrorContext & { responseText?: string };
 
