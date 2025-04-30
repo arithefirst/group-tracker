@@ -31,6 +31,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         onError: (e) => {
           setError(e);
         },
+        onSuccess: () => {
+          setError(undefined);
+        },
       },
     );
   }
@@ -77,7 +80,12 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         ) : (
           ''
         )}
-        <Button type="submit" className="w-full" disabled={isLoading} aria-disabled={isLoading}>
+        <Button
+          type="submit"
+          className={`w-full ${isLoading ? 'cursor-wait' : 'cursor-pointer'}`}
+          disabled={isLoading}
+          aria-disabled={isLoading}
+        >
           {isLoading ? <Loader className="animate-spin" /> : 'Sign In'}
         </Button>
       </div>
