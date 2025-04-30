@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Group Tracker',
-  description: 'An application for tracking the locations of large groups while on trips',
+  title: process.env.NEXT_PUBLIC_TRIP_NAME,
+  description: `An application for storing the location information of ${process.env.NEXT_PUBLIC_GROUP}`,
 };
 
 export default function RootLayout({
