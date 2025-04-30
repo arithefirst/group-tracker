@@ -106,7 +106,7 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
       </div>
       <div className="grid gap-6 md:grid-cols-2">
         <div className="grid">
-          <Label htmlFor="$!" className="mb-2">
+          <Label htmlFor="email" className="mb-2">
             Email
           </Label>
           <Input
@@ -118,14 +118,14 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
           <span className="mt-0.5 text-xs text-red-700">{getZodMsg(zodError, 'email')}</span>{' '}
         </div>
         <div className="grid">
-          <Label htmlFor="$!" className="mb-2">
+          <Label htmlFor="name" className="mb-2">
             Full Name
           </Label>
           <Input id="name" type="text" onInput={(e) => setName((e.target as HTMLInputElement).value)} />
           <span className="mt-0.5 text-xs text-red-700">{getZodMsg(zodError, 'name')}</span>
         </div>
         <div className="grid">
-          <Label htmlFor="$!" className="mb-2">
+          <Label htmlFor="username" className="mb-2">
             Username
           </Label>
           <Input
@@ -149,7 +149,7 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
           <span className="mt-0.5 text-xs text-red-700">{getZodMsg(zodError, 'password')}</span>
         </div>
         <div className="grid">
-          <Label htmlFor="$!" className="mb-2">
+          <Label htmlFor="verify" className="mb-2">
             Verify Password
           </Label>
           <Input
@@ -171,7 +171,7 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
           {isLoading ? <Loader className="animate-spin" /> : 'Sign Up'}
         </Button>
         {error ? (
-          <span className="mx-auto text-red-600">
+          <span className="mx-auto text-red-700">
             {(() => {
               try {
                 const message = JSON.parse(error.responseText!).message;
