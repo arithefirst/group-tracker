@@ -26,7 +26,9 @@ export default async function AdminPage() {
           <p className="text-2xl">
             Hi, <span className="font-bold">{session?.user.name} (admin)</span>
           </p>
-          <SignOut />
+          <div className="ml-auto">
+            <SignOut />
+          </div>
         </header>
         <main className="grid w-full flex-grow gap-4 p-4">
           <Card className="mx-auto w-full overflow-x-scroll sm:w-11/12">
