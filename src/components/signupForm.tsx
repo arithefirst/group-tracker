@@ -9,11 +9,11 @@ import { ErrorContext } from 'better-auth/client';
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
+import { v4 } from 'uuid';
 import z, { ZodError } from 'zod';
 
 const schema = z
   .object({
-    email: z.string().email(),
     name: z.string().nonempty('Name cannot be empty.'),
     password: z
       .string()
@@ -38,7 +38,6 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
   const [isLoading, setLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [verify, setVerify] = useState<string>('');
   const [zodError, setZodError] = useState<ZodError | undefined>();
@@ -63,7 +62,6 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
     const { error } = zValidate({
       username,
       password,
-      email,
       name,
       verify,
     });
@@ -74,7 +72,7 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
       {
         username,
         password,
-        email,
+        email: `${v4()}@${v4()}.com`,
         name,
       },
       {
@@ -95,11 +93,10 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
     zValidate({
       username,
       password,
-      email,
       name,
       verify,
     });
-  }, [username, password, email, name, verify]);
+  }, [username, password, name, verify]);
 
   return (
     <form onSubmit={signIn} className={cn('flex flex-col gap-6', className)} {...props}>
@@ -108,18 +105,6 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
         <p className="text-muted-foreground text-sm">Fill out the fields below to create your account</p>
       </div>
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="grid">
-          <Label htmlFor="email" className="mb-2">
-            Email
-          </Label>
-          <Input
-            id="email"
-            type="text"
-            placeholder="janedoe@example.com"
-            onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-          />
-          <span className="mt-0.5 text-xs text-red-700">{getZodMsg(zodError, 'email')}</span>{' '}
-        </div>
         <div className="grid">
           <Label htmlFor="name" className="mb-2">
             Full Name
