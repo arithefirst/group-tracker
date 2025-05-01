@@ -5,7 +5,13 @@ import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { Loader } from 'lucide-react';
 
-export default function ProtectClient({ children }: { children: ReactNode }) {
+export default function ProtectClient({
+  children,
+  forAdmin = false,
+}: {
+  children: ReactNode;
+  forAdmin?: boolean;
+}) {
   const router = useRouter();
   const { data, isPending } = authClient.useSession();
   const [isMounted, setIsMounted] = useState(false);
@@ -18,7 +24,11 @@ export default function ProtectClient({ children }: { children: ReactNode }) {
     if (!isPending && !data) {
       router.push('/auth/sign-in');
     }
-  }, [isPending, data, router]);
+
+    if (forAdmin && !isPending && data?.user.role !== 'admin') {
+      router.push('/');
+    }
+  }, [isPending, data, router, forAdmin]);
 
   // Don't render anything until client-side hydration is complete
   if (!isMounted) {
@@ -33,7 +43,7 @@ export default function ProtectClient({ children }: { children: ReactNode }) {
     );
   }
 
-  if (data) {
+  if (data && ((data.user.role === 'admin' && forAdmin) || !forAdmin)) {
     return <>{children}</>;
   }
 
