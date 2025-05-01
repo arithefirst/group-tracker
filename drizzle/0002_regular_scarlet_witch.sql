@@ -1,0 +1,1 @@
+ALTER TABLE "location_data" ADD COLUMN "last_update" timestamp DEFAULT now() NOT NULL;

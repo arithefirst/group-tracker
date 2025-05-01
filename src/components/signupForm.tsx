@@ -7,6 +7,7 @@ import { authClient } from '@/lib/auth-client';
 import { cn, getZodMsg } from '@/lib/utils';
 import { ErrorContext } from 'better-auth/client';
 import { Loader } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 import z, { ZodError } from 'zod';
 
@@ -33,6 +34,7 @@ const schema = z
 type AuthError = ErrorContext & { responseText?: string };
 
 export function SignupForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
+  const router = useRouter();
   const [isLoading, setLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -83,6 +85,7 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
         },
         onSuccess: () => {
           setError(undefined);
+          router.push('/');
         },
       },
     );

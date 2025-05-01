@@ -8,6 +8,27 @@
       "when": 1745986655076,
       "tag": "0000_natural_gargoyle",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1746072028355,
+      "tag": "0001_silky_black_panther",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1746072267204,
+      "tag": "0002_regular_scarlet_witch",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1746074735773,
+      "tag": "0003_spotty_boomer",
+      "breakpoints": true
     }
   ]
 }

@@ -1,5 +1,23 @@
 import { boolean, pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
+export const approvedLocations = pgTable('approved_locations', {
+  name: text('name').primaryKey(),
+});
+
+export const locationData = pgTable('location_data', {
+  user: text('user')
+    .references(() => user.id, { onDelete: 'cascade' })
+    .primaryKey(),
+  location: text('location')
+    .notNull()
+    .references(() => approvedLocations.name, { onDelete: 'cascade' }),
+  lastUpdate: timestamp('last_update', { mode: 'date' }).notNull().defaultNow(),
+});
+
+// #################
+// ## Better-Auth ##
+// #################
+
 export const user = pgTable('user', {
   id: text('id').primaryKey(),
   name: text('name').notNull(),
