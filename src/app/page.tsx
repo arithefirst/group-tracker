@@ -49,7 +49,7 @@ export default async function Page() {
                   <p>If this is your first time signing in, set your current location.</p>
                 </>
               ) : (
-                <div>
+                <div className="grid gap-2">
                   <p className="ml-1">You&apos;re at the...</p>
                   <div className="flex items-center gap-2 text-4xl">
                     <MapPin className="size-8" />
