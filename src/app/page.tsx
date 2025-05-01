@@ -12,6 +12,7 @@ import { updateLocation } from './actions';
 import { SignOut } from '@/components/signOut';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
+import { ShieldUser } from 'lucide-react';
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -44,7 +45,7 @@ export default async function Page() {
               // @ts-expect-error Betterauth is not properly typed and says the user object does not include the role feild.
               session?.user.role === 'admin' ? (
                 <Link className={buttonVariants({ size: 'sm' })} href="/admin">
-                  Admin Dash
+                  <ShieldUser /> Admin
                 </Link>
               ) : (
                 ''

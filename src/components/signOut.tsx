@@ -3,6 +3,7 @@
 import { authClient } from '@/lib/auth-client';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import { LogOut } from 'lucide-react';
 
 export function SignOut() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export function SignOut() {
 
   return (
     <Button size="sm" className="cursor-pointer" onClick={signOut}>
-      Sign Out
+      <LogOut /> Sign Out
     </Button>
   );
 }
