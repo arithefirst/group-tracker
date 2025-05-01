@@ -9,6 +9,7 @@ import { eq } from 'drizzle-orm';
 import { MapPin } from 'lucide-react';
 import { headers } from 'next/headers';
 import { updateLocation } from './actions';
+import { SignOut } from '@/components/signOut';
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -36,6 +37,7 @@ export default async function Page() {
           <p className="text-2xl">
             Hi, <span className="font-bold">{session?.user.name}</span>
           </p>
+          <SignOut />
         </header>
         <main className="grid w-full flex-grow gap-4 p-4 md:grid-cols-2">
           <Card>

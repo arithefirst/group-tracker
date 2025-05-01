@@ -6,6 +6,7 @@ import { locationData, user } from '@/lib/db/schema';
 import { asc, eq } from 'drizzle-orm';
 import { headers } from 'next/headers';
 import { auth } from '@/lib/auth';
+import { SignOut } from '@/components/signOut';
 
 export default async function AdminPage() {
   const promises = await Promise.all([
@@ -25,6 +26,7 @@ export default async function AdminPage() {
           <p className="text-2xl">
             Hi, <span className="font-bold">{session?.user.name} (admin)</span>
           </p>
+          <SignOut />
         </header>
         <main className="grid w-full flex-grow gap-4 p-4">
           <Card className="mx-auto w-11/12">
