@@ -56,20 +56,14 @@ export default async function AdminPage() {
                           <TableCell className="hidden sm:table-cell">{u.user.role}</TableCell>
                           <TableCell>
                             {l
-                              ? (() => {
-                                  const now = new Date();
-                                  const lastUpdate = l.lastUpdate;
-                                  const diffMs = now.getTime() - lastUpdate.getTime();
-                                  const diffSec = Math.round(diffMs / 1000);
-                                  const diffMin = Math.round(diffSec / 60);
-                                  const diffHour = Math.round(diffMin / 60);
-                                  const diffDay = Math.round(diffHour / 24);
-
-                                  if (diffSec < 60) return `${diffSec} seconds ago`;
-                                  if (diffMin < 60) return `${diffMin} minutes ago`;
-                                  if (diffHour < 24) return `${diffHour} hours ago`;
-                                  return `${diffDay} days ago`;
-                                })()
+                              ? l.lastUpdate.toLocaleDateString('us', {
+                                  hour: 'numeric',
+                                  minute: 'numeric',
+                                  second: 'numeric',
+                                  month: 'short',
+                                  day: 'numeric',
+                                  timeZone: 'America/New_York',
+                                })
                               : 'N/A'}
                           </TableCell>
                         </TableRow>

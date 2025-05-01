@@ -86,6 +86,7 @@ export default async function Page() {
                   minute: 'numeric',
                   hour: 'numeric',
                   second: 'numeric',
+                  timeZone: 'America/New_York',
                 })}
               </CardFooter>
             )}
