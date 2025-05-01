@@ -29,7 +29,7 @@ export default async function AdminPage() {
           <SignOut />
         </header>
         <main className="grid w-full flex-grow gap-4 p-4">
-          <Card className="mx-auto w-full sm:w-11/12">
+          <Card className="mx-auto w-full overflow-x-scroll sm:w-11/12">
             <CardHeader>
               <CardTitle className="mb-2">Members</CardTitle>
             </CardHeader>
@@ -41,7 +41,7 @@ export default async function AdminPage() {
                       <TableHead>Name</TableHead>
                       <TableHead>Location</TableHead>
                       <TableHead className="hidden sm:table-cell">Role</TableHead>
-                      <TableHead className="hidden sm:table-cell">Last updated</TableHead>
+                      <TableHead>Last updated</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -50,7 +50,7 @@ export default async function AdminPage() {
                       return (
                         <TableRow key={i} className="overflow-x-scroll">
                           <TableCell>{u.user.name}</TableCell>
-                          <TableCell className="font-bold">{l ? l.location : '<UNKNOWN>'}</TableCell>
+                          <TableCell className="font-bold">{l ? l.location : 'Not Yet Entered'}</TableCell>
                           <TableCell className="hidden sm:table-cell">{u.user.role}</TableCell>
                           <TableCell>
                             {l

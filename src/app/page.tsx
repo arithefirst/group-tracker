@@ -10,6 +10,8 @@ import { MapPin } from 'lucide-react';
 import { headers } from 'next/headers';
 import { updateLocation } from './actions';
 import { SignOut } from '@/components/signOut';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -34,10 +36,22 @@ export default async function Page() {
     <ProtectRSC>
       <div className="flex min-h-screen w-screen flex-col">
         <header className="bg-muted flex h-16 w-full items-center p-4 shadow-sm">
-          <p className="text-2xl">
+          <p className="text-xl md:text-2xl">
             Hi, <span className="font-bold">{session?.user.name}</span>
           </p>
-          <SignOut />
+          <div className="ml-auto flex cursor-pointer gap-2">
+            {
+              // @ts-expect-error Betterauth is not properly typed and says the user object does not include the role feild.
+              session?.user.role === 'admin' ? (
+                <Link className={buttonVariants({ size: 'sm' })} href="/admin">
+                  Admin Dash
+                </Link>
+              ) : (
+                ''
+              )
+            }
+            <SignOut />
+          </div>
         </header>
         <main className="grid w-full flex-grow gap-4 p-4 md:grid-cols-2">
           <Card>

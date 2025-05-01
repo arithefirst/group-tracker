@@ -13,7 +13,7 @@ export function SignOut() {
   }
 
   return (
-    <Button size="sm" className="ml-auto cursor-pointer" onClick={signOut}>
+    <Button size="sm" className="cursor-pointer" onClick={signOut}>
       Sign Out
     </Button>
   );
