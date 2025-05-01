@@ -7,6 +7,7 @@ import { authClient } from '@/lib/auth-client';
 import { cn, getZodMsg } from '@/lib/utils';
 import { ErrorContext } from 'better-auth/client';
 import { Loader } from 'lucide-react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 import z, { ZodError } from 'zod';
@@ -107,6 +108,14 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         >
           {isLoading ? <Loader className="animate-spin" /> : 'Sign In'}
         </Button>
+
+        <p className="text-center">
+          Need an account?{' '}
+          <Link className="italic underline" href="/auth/sign-up">
+            Sign up
+          </Link>
+        </p>
+
         {error ? (
           <span className="text-red-700">
             {(() => {

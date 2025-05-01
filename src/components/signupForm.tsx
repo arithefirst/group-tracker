@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 import { v4 } from 'uuid';
 import z, { ZodError } from 'zod';
+import Link from 'next/link';
 
 const schema = z
   .object({
@@ -158,6 +159,14 @@ export function SignupForm({ className, ...props }: React.ComponentPropsWithoutR
         >
           {isLoading ? <Loader className="animate-spin" /> : 'Sign Up'}
         </Button>
+
+        <p className="text-center">
+          Have an account?{' '}
+          <Link className="italic underline" href="/auth/sign-in">
+            Sign in
+          </Link>
+        </p>
+
         {error ? (
           <span className="mx-auto text-red-700">
             {(() => {
