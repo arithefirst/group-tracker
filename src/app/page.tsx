@@ -1,4 +1,4 @@
-import { BlurIn } from '@/components/blurIn';
+import { BlurIn, AnimateHeading } from '@/components/anim';
 import { ProtectRSC } from '@/components/protect/server';
 import { SignOut } from '@/components/signOut';
 import { buttonVariants } from '@/components/ui/button';
@@ -70,7 +70,9 @@ export default async function Page() {
                   <p className="ml-1">You&apos;re at the...</p>
                   <div className="flex items-center gap-2 text-4xl">
                     <MapPin className="size-8" />
-                    <h1 className="font-bold">{location[0].location}</h1>
+                    <AnimateHeading className="font-bold" aKey={location[0].location}>
+                      {location[0].location}
+                    </AnimateHeading>
                   </div>
                   <UpdateText lastUpdate={location[0].lastUpdate} hours={3} />
                 </BlurIn>

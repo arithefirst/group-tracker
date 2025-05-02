@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useFormStatus } from 'react-dom';
 import { Loader } from 'lucide-react';
-import { BlurIn } from './blurIn';
+import { BlurIn } from './anim';
 
 interface Props {
   updateLocationWithSession: (formData: FormData) => Promise<void>;
