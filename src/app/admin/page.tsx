@@ -54,18 +54,28 @@ export default async function AdminPage() {
                           <TableCell>{u.user.name}</TableCell>
                           <TableCell className="font-bold">{l ? l.location : 'Not Yet Entered'}</TableCell>
                           <TableCell className="hidden sm:table-cell">{u.user.role}</TableCell>
-                          <TableCell>
-                            {l
-                              ? l.lastUpdate.toLocaleDateString('us', {
-                                  hour: 'numeric',
-                                  minute: 'numeric',
-                                  second: 'numeric',
-                                  month: 'short',
-                                  day: 'numeric',
-                                  timeZone: 'America/New_York',
-                                })
-                              : 'N/A'}
-                          </TableCell>
+                          {l ? (
+                            <TableCell
+                              className={
+                                // Red if overdue
+                                new Date().getTime() - l.lastUpdate.getTime() >= 3 * 60 * 60 * 1000
+                                  ? 'font-bold text-red-700'
+                                  : ''
+                              }
+                            >
+                              {l.lastUpdate.toLocaleDateString('us', {
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                                timeZone: 'America/New_York',
+                              })}
+                            </TableCell>
+                          ) : (
+                            // Displays if location data empty
+                            <TableCell>N/A</TableCell>
+                          )}
                         </TableRow>
                       );
                     })}
