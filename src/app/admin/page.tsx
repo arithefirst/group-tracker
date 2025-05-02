@@ -34,6 +34,10 @@ export default async function AdminPage() {
           <Card className="mx-auto w-full overflow-x-scroll sm:w-11/12">
             <CardHeader>
               <CardTitle className="mb-2">Members</CardTitle>
+              <div className="flex items-center gap-1">
+                <div className="size-5 rounded-[4px] bg-red-700"></div>
+                <p>Overdue</p>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
