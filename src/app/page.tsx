@@ -1,4 +1,7 @@
+import { BlurIn } from '@/components/blurIn';
 import { ProtectRSC } from '@/components/protect/server';
+import { SignOut } from '@/components/signOut';
+import { buttonVariants } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { UpdateLocForm } from '@/components/updateLocForm';
 import { UpdateText } from '@/components/updateText';
@@ -6,13 +9,10 @@ import { auth } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { approvedLocations, locationData } from '@/lib/db/schema';
 import { eq } from 'drizzle-orm';
-import { MapPin } from 'lucide-react';
+import { MapPin, ShieldUser } from 'lucide-react';
 import { headers } from 'next/headers';
-import { updateLocation } from './actions';
-import { SignOut } from '@/components/signOut';
 import Link from 'next/link';
-import { buttonVariants } from '@/components/ui/button';
-import { ShieldUser } from 'lucide-react';
+import { updateLocation } from './actions';
 
 export default async function Page() {
   const session = await auth.api.getSession({
@@ -66,28 +66,30 @@ export default async function Page() {
                   <p>If this is your first time signing in, set your current location.</p>
                 </>
               ) : (
-                <div className="grid gap-2">
+                <BlurIn className="grid gap-2">
                   <p className="ml-1">You&apos;re at the...</p>
                   <div className="flex items-center gap-2 text-4xl">
                     <MapPin className="size-8" />
                     <h1 className="font-bold">{location[0].location}</h1>
                   </div>
                   <UpdateText lastUpdate={location[0].lastUpdate} hours={3} />
-                </div>
+                </BlurIn>
               )}
             </CardContent>
             {noRows ? (
               <></>
             ) : (
               <CardFooter className="text-muted-foreground text-sm">
-                Last updated at{' '}
-                {location[0].lastUpdate.toLocaleDateString('en', {
-                  timeZoneName: 'short',
-                  minute: 'numeric',
-                  hour: 'numeric',
-                  second: 'numeric',
-                  timeZone: 'America/New_York',
-                })}
+                <BlurIn>
+                  Last updated at{' '}
+                  {location[0].lastUpdate.toLocaleDateString('en', {
+                    timeZoneName: 'short',
+                    minute: 'numeric',
+                    hour: 'numeric',
+                    second: 'numeric',
+                    timeZone: 'America/New_York',
+                  })}
+                </BlurIn>
               </CardFooter>
             )}
           </Card>
